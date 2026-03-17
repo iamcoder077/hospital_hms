@@ -1,10 +1,14 @@
 import sqlite3
+import os
 from flask import Flask, render_template, request, redirect, session
 
 app = Flask(__name__)
 app.secret_key = "hospital_secret_key"
 
-conn = sqlite3.connect("hospital.db")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "hospital.db")
+
+conn = sqlite3.connect(DB_PATH)
 c = conn.cursor()
 try:
     c.execute("ALTER TABLE tele_queue ADD COLUMN link TEXT")
