@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS users (
 )
 """)
 
-c.execute("INSERT OR IGNORE INTO users (id, username, password) VALUES (1, 'admin', 'admin')")
+c.execute("INSERT OR IGNORE INTO users (id, username, password) VALUES (1, 'admin', '1234')")
 conn.commit()
 
 # PATIENTS TABLE
