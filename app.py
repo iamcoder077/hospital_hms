@@ -8,7 +8,7 @@ app.secret_key = "hospital_secret_key"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "hospital.db")
 
-conn = sqlite3.connect(DB_PATH)
+conn = sqlite3.connect(DB_PATH, check_same_thread=False)
 c = conn.cursor()
 try:
     c.execute("ALTER TABLE tele_queue ADD COLUMN link TEXT")
