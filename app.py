@@ -332,6 +332,17 @@ def generate_link(id):
 
     return redirect('/telemedicine')
 
+    @app.route("/create_admin")
+def create_admin():
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    c.execute("INSERT INTO users (username, password) VALUES (?, ?)", ("admin", "1234"))
+    conn.commit()
+
+    conn.close()
+    return "Admin created!"
+
 # ---------------- RUN APP ----------------
 
 if __name__ == "__main__":
