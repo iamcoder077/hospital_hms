@@ -27,9 +27,10 @@ CREATE TABLE IF NOT EXISTS users (
 c.execute("SELECT * FROM users WHERE username='admin'")
 user = c.fetchone()
 
-if not user:
-    c.execute("INSERT INTO users (username, password) VALUES ('admin','1234')")
+if user is None:
+    c.execute("INSERT INTO users (username, password) VALUES (?, ?)", ("admin", "1234"))
     conn.commit()
+
 
 # PATIENTS TABLE
 c.execute("""
