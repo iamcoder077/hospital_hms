@@ -332,7 +332,7 @@ def generate_link(id):
 
     return redirect('/telemedicine')
 
-    @app.route("/create_admin")
+@app.route("/create_admin")
 def create_admin():
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
