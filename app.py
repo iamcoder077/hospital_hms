@@ -24,6 +24,9 @@ CREATE TABLE IF NOT EXISTS users (
 )
 """)
 
+c.execute("INSERT OR IGNORE INTO users (id, username, password) VALUES (1, 'admin', 'admin')")
+conn.commit()
+
 # PATIENTS TABLE
 c.execute("""
 CREATE TABLE IF NOT EXISTS patients (
