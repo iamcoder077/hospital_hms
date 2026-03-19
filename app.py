@@ -59,10 +59,11 @@ c.execute("""
 CREATE TABLE IF NOT EXISTS telemedicine (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     patient TEXT,
+    phone TEXT,
     doctor TEXT,
     time TEXT,
     status TEXT,
-    link TEXT
+    meet_link TEXT
 )
 """)
 
@@ -342,6 +343,20 @@ def create_admin():
 
     conn.close()
     return "Admin created!"
+
+@app.route("/save_meet_link", methods=["POST"])
+def save_meet_link():
+    id = request.form["id"]
+    link = request.form["link"]
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    c.execute("UPDATE tele_queue SET link=? WHERE id=?", (link, id))
+    conn.commit()
+    conn.close()
+
+    return redirect("/telemedicine")
 
 # ---------------- RUN APP ----------------
 
